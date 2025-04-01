@@ -1,0 +1,42 @@
+{
+  "score": 60,
+  "max_score": 60,
+  "tests": [
+    {
+      "name": "\u7ef4\u6069\u4f4d\u79fb\u5e38\u6570",
+      "status": "\u901a\u8fc7",
+      "points": 10,
+      "max_points": 10
+    },
+    {
+      "name": "\u9ea6\u514b\u65af\u97e6\u901f\u7387\u5206\u5e03\u5f8b",
+      "status": "\u901a\u8fc7",
+      "points": 10,
+      "max_points": 10
+    },
+    {
+      "name": "\u62cd\u9891\u73b0\u8c61\u6570\u503c\u6a21\u62df\u4e0e\u5206\u6790",
+      "status": "\u901a\u8fc7",
+      "points": 10,
+      "max_points": 10
+    },
+    {
+      "name": "\u9a7b\u6ce2\u52a8\u753b\u6a21\u62df\u9879\u76ee",
+      "status": "\u901a\u8fc7",
+      "points": 10,
+      "max_points": 10
+    },
+    {
+      "name": "\u5f39\u7c27\u7269\u5757\u8fd0\u52a8\u65b9\u7a0b\u6c42\u89e3",
+      "status": "\u901a\u8fc7",
+      "points": 10,
+      "max_points": 10
+    },
+    {
+      "name": "\u725b\u987f\u73af\u7684\u5e72\u6d89\u56fe\u6837",
+      "status": "\u901a\u8fc7",
+      "points": 10,
+      "max_points": 10
+    }
+  ]
+}
