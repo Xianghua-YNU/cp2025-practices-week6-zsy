@@ -77,10 +77,11 @@ def solve_wien_constant(x0):
     x = fsolve(wien_equation, x0)[0]
     
     # TODO: 计算维恩位移常数
+    h = constants.Planck  
+    c = constants.speed_of_light  
+    k_B = constants.Boltzmann 
     b = h * c / (k_B * x)
-    h = constants.Planck
-    c = constants.speed_of_light
-    k_B = constants.Boltzmann
+    
     
     return x, b
 
