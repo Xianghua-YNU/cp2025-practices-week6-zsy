@@ -23,7 +23,7 @@ def generate_grid():
     """
     # 在此生成x和y方向的坐标网格
     grid_size = 0.01  # 网格范围 (m)
-    resolution = 500  # 网格分辨率
+    resolution = 1000  # 网格分辨率
     x = np.linspace(-grid_size, grid_size, resolution)
     y = np.linspace(-grid_size, grid_size, resolution)
     X, Y = np.meshgrid(x, y)
