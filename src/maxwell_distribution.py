@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.integrate import quad
 import time
+import matplotlib.pyplot as plt
 
 # 最概然速率 (m/s)
 vp = 1578  
@@ -17,7 +18,7 @@ def maxwell_distribution(v, vp):
     分布函数f(v)的值
     """
     # 在此实现麦克斯韦分布函数
-    pass
+    return (4 / np.sqrt(np.pi)) * (v**2 / vp**3) * np.exp(-v**2 / vp**2)
 
 def percentage_0_to_vp(vp):
     """
@@ -30,7 +31,9 @@ def percentage_0_to_vp(vp):
     百分比值
     """
     # 在此实现0到vp的积分计算
-    pass
+    result, _ = quad(maxwell_distribution, 0, vp, args=(vp,))
+    return result * 100
+
 
 def percentage_0_to_3_3vp(vp):
     """
@@ -43,7 +46,8 @@ def percentage_0_to_3_3vp(vp):
     百分比值
     """
     # 在此实现0到3.3vp的积分计算
-    pass
+    result, _ = quad(maxwell_distribution, 0, 3.3 * vp, args=(vp,))
+    return result * 100
 
 def percentage_3e4_to_3e8(vp):
     """
@@ -56,7 +60,9 @@ def percentage_3e4_to_3e8(vp):
     百分比值
     """
     # 在此实现3×10^4到3×10^8的积分计算
-    pass
+    result, _ = quad(maxwell_distribution, 3e4, 3e8, args=(vp,))
+    return result * 100
+
 
 def trapezoidal_rule(f, a, b, n):
     """
@@ -72,7 +78,11 @@ def trapezoidal_rule(f, a, b, n):
     积分近似值
     """
     # 在此实现梯形积分法则
-    pass
+    dx = (b - a) / n
+    x = np.linspace(a, b, n + 1)
+    y = f(x, vp)
+    return dx * (0.5 * y[0] + 0.5 * y[-1] + np.sum(y[1:-1]))
+
 
 def compare_methods(task_name, quad_func, trap_func, vp, n_values=[10, 100, 1000]):
     """比较quad和梯形积分法的结果和性能"""
@@ -87,6 +97,7 @@ def compare_methods(task_name, quad_func, trap_func, vp, n_values=[10, 100, 1000
     # 使用不同区间划分数的梯形法则
     print("\n梯形积分法结果:")
     print(f"{'区间划分数':<12}{'结果 (%)':<15}{'相对误差 (%)':<15}{'计算时间 (秒)':<15}")
+    results = []
     
     for n in n_values:
         start_time = time.time()
@@ -95,6 +106,18 @@ def compare_methods(task_name, quad_func, trap_func, vp, n_values=[10, 100, 1000
         rel_error = abs(trap_result - quad_result) / quad_result * 100
         
         print(f"{n:<12}{trap_result:<15.6f}{rel_error:<15.6f}{trap_time:<15.6f}")
+        results.append((n, trap_result, rel_error, trap_time))
+    
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot([n for n, _, _, _ in results], [rel_error for _, _, rel_error, _ in results], marker='o')
+    plt.title(f"{task_name} - Trapezoidal rule relative error vs interval division number")
+    plt.xlabel("Interval division number")
+    plt.ylabel("relative error (%)")
+    plt.xscale('log')
+    plt.grid(True)
+    plt.savefig(f"results/{task_name.replace(' ', '_')}_comparison.png")
+    plt.close()
 
 if __name__ == "__main__":
     # 测试代码
