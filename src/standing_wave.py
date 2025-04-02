@@ -69,8 +69,8 @@ def animate(i):
         line.set_data(x_data, y_data)
    
     if i == 50:
-        plt.savefig(.github/pngf'standing_wave_frame_{i}.png', dpi=300)
-
+        plt.savefig(f'standing_wave_frame_{i}.png', dpi=300)
+    
     return lines
 if __name__ == '__main__':
     # TODO: 创建动画对象并显示
