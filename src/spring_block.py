@@ -45,7 +45,7 @@ def spring_mass_ode_func(state, time):
     list: 包含位置和速度的导数的列表
     """
     # TODO: 从状态中提取位置和速度
-    position, velocity = y
+    position, velocity = state
     # TODO: 计算位置和速度的导数
     dposition_dt = velocity
     dvelocity_dt = - (k / m) * position
@@ -70,7 +70,7 @@ def solve_ode_odeint(step_num):
     time_points = np.arange(step_num + 1) * time_step
     
     # TODO: 使用 odeint 求解微分方程
-    solution = odeint(spring_block_system, y0, time_points, args=(k, m))
+    solution = odeint(spring_mass_ode_func, initial_state, time_points, args=(1, 1))
     
     # TODO: 从解中提取位置和速度
     position = solution[:, 0]
