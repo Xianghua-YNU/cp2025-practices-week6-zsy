@@ -14,7 +14,7 @@ def sineWaveZeroPhi(x, t, A, omega, k):
     '''
     # TODO: 实现正弦波函数
     # 提示：使用 np.sin() 函数计算 A * sin(kx - ωt)
-     return A * np.sin(k * x - omega * t)
+    return A * np.sin(k * x - omega * t)
 
 # 创建动画所需的 Figure 和 Axes
 fig = plt.figure()
@@ -27,6 +27,7 @@ line3, = subplot.plot([], [], lw=2)
 
 # 创建一个line对象列表，便于操作
 lines = [line1, line2, line3]
+
 
 def init():
     '''
@@ -67,11 +68,13 @@ def animate(i):
     waveFunctions = [[x, y1], [x, y2], [x, y3]]
     for line, (x_data, y_data) in zip(lines, waveFunctions):
         line.set_data(x_data, y_data)
-   
+
     if i == 50:
         plt.savefig(f'standing_wave_frame_{i}.png', dpi=300)
     
     return lines
+
+
 if __name__ == '__main__':
     # TODO: 创建动画对象并显示
     # 提示：使用animation.FuncAnimation创建动画
