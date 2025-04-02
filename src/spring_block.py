@@ -47,8 +47,8 @@ def spring_mass_ode_func(state, time):
     # TODO: 从状态中提取位置和速度
     position, velocity = state
     # TODO: 计算位置和速度的导数
-    d_position_dt = velocity
-    d_velocity_dt = -position
+    dposition_dt = velocity
+    dvelocity_dt = -position
     return [dposition_dt, dvelocity_dt]  # 替换为正确的返回值
 
 
