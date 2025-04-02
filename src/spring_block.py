@@ -47,8 +47,8 @@ def spring_mass_ode_func(state, time):
     # TODO: 从状态中提取位置和速度
     position, velocity = state
     # TODO: 计算位置和速度的导数
-    dposition_dt = velocity
-    dvelocity_dt = - (k / m) * position
+    d_position_dt = velocity
+    d_velocity_dt = -position
     return [dposition_dt, dvelocity_dt]  # 替换为正确的返回值
 
 
@@ -70,7 +70,7 @@ def solve_ode_odeint(step_num):
     time_points = np.arange(step_num + 1) * time_step
     
     # TODO: 使用 odeint 求解微分方程
-    solution = odeint(spring_mass_ode_func, initial_state, time_points, args=(1, 1))
+    solution = odeint(spring_mass_ode_func, initial_state, time_points)
     
     # TODO: 从解中提取位置和速度
     position = solution[:, 0]
@@ -96,31 +96,24 @@ def plot_ode_solutions(time_euler, position_euler, velocity_euler, time_odeint, 
     # TODO: 绘制位置对比图
     plt.subplot(2, 1, 1)
     plt.plot(time_euler, position_euler, label='Euler Method')
-    plt.plot(time_odeint, position_odeint, label='odeint Method')
+    plt.plot(time_odeint, position_odeint, label='Odeint Method', linestyle='--')
+    plt.title('Position vs Time')
     plt.xlabel('Time')
     plt.ylabel('Position')
-    plt.title('Position vs Time')
     plt.legend()
-    plt.grid(True)
     # TODO: 绘制速度对比图
     plt.subplot(2, 1, 2)
     plt.plot(time_euler, velocity_euler, label='Euler Method')
-    plt.plot(time_odeint, velocity_odeint, label='odeint Method')
+    plt.plot(time_odeint, velocity_odeint, label='Odeint Method', linestyle='--')
+    plt.title('Velocity vs Time')
     plt.xlabel('Time')
     plt.ylabel('Velocity')
-    plt.title('Velocity vs Time')
     plt.legend()
     plt.grid(True)
     # TODO: 显示图形
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    plt.savefig(save_path)
-    plt.close()
-
-    save_path = "/workspaces/cp2025-practices-week6-zsy/.github/png/ode_solutions.png"
-    plot_ode_solutions(time_euler, position_euler, velocity_euler, time_odeint, position_odeint, velocity_odeint, save_path)
-
-    print(f"图形已保存到 {os.path.abspath(save_path)}")
-
+    plt.tight_layout()
+    plt.savefig(".github/png/spring_mass_solutions.png")
+    plt.show()
 
 if __name__ == "__main__":
     # 模拟步数
