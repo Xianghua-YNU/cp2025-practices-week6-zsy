@@ -107,16 +107,17 @@ def compare_methods(task_name, quad_func, trap_func, vp, n_values=[10, 100, 1000
         
         print(f"{n:<12}{trap_result:<15.6f}{rel_error:<15.6f}{trap_time:<15.6f}")
         results.append((n, trap_result, rel_error, trap_time))
-        
-        plt.figure(figsize=(10, 6))
-        plt.plot([n for n, _, _, _ in results], [rel_error for _, _, rel_error, _ in results], marker='o')
-        plt.title(f"{task_name} - Trapezoidal rule relative error vs interval division number")
-        plt.xlabel("Interval division number")
-        plt.ylabel("relative error (%)")
-        plt.xscale('log')
-        plt.grid(True)
-        plt.savefig(f"results/{task_name.replace(' ', '_')}_comparison.png")
-        plt.close()
+    
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot([n for n, _, _, _ in results], [rel_error for _, _, rel_error, _ in results], marker='o')
+    plt.title(f"{task_name} - Trapezoidal rule relative error vs interval division number")
+    plt.xlabel("Interval division number")
+    plt.ylabel("relative error (%)")
+    plt.xscale('log')
+    plt.grid(True)
+    plt.savefig(f"results/{task_name.replace(' ', '_')}_comparison.png")
+    plt.close()
 
 if __name__ == "__main__":
     # 测试代码
