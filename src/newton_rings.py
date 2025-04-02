@@ -28,6 +28,7 @@ def generate_grid():
     y = np.linspace(-grid_size, grid_size, resolution)
     X, Y = np.meshgrid(x, y)
     r = np.sqrt(X**2 + Y**2)
+    r[resolution//2, resolution//2] = 0.0
     return X, Y, r
 
 def calculate_intensity(r, lambda_light, R_lens):
